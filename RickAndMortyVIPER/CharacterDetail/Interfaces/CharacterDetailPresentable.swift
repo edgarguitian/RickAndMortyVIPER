@@ -10,5 +10,6 @@ import Foundation
 protocol CharacterDetailPresentable: AnyObject {
     var ui: CharacterDetailPresenterUI? { get }
     var characterURL: URL { get }
+    var characterModel: CharacterDetailViewModel? { get }
     func onViewAppear()
 }

@@ -38,6 +38,19 @@
 		6DFF69562B3ADA3A002F9277 /* CharacterDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF69552B3ADA3A002F9277 /* CharacterDetailInteractor.swift */; };
 		6DFF69582B3ADA48002F9277 /* CharacterDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF69572B3ADA48002F9277 /* CharacterDetailRouter.swift */; };
 		6DFF695B2B3ADA66002F9277 /* CharacterDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF695A2B3ADA66002F9277 /* CharacterDetailEntity.swift */; };
+		6DFF69672B3B406D002F9277 /* LocationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF69662B3B406D002F9277 /* LocationCellView.swift */; };
+		6DFF69692B3B4075002F9277 /* LocationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF69682B3B4075002F9277 /* LocationsListView.swift */; };
+		6DFF696B2B3B4081002F9277 /* LocationsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF696A2B3B4081002F9277 /* LocationsListInteractor.swift */; };
+		6DFF696D2B3B408A002F9277 /* LocationsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF696C2B3B408A002F9277 /* LocationsListPresenter.swift */; };
+		6DFF696F2B3B4092002F9277 /* LocationsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF696E2B3B4092002F9277 /* LocationsListRouter.swift */; };
+		6DFF69712B3B409D002F9277 /* LocationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF69702B3B409D002F9277 /* LocationCellViewModel.swift */; };
+		6DFF69732B3B40A4002F9277 /* LocationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF69722B3B40A4002F9277 /* LocationMapper.swift */; };
+		6DFF69752B3B40B0002F9277 /* LocationsListInteractable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF69742B3B40B0002F9277 /* LocationsListInteractable.swift */; };
+		6DFF69772B3B40B8002F9277 /* LocationsListPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF69762B3B40B8002F9277 /* LocationsListPresentable.swift */; };
+		6DFF69792B3B40C1002F9277 /* LocationsListUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF69782B3B40C1002F9277 /* LocationsListUI.swift */; };
+		6DFF697B2B3B40CD002F9277 /* LocationsListRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF697A2B3B40CD002F9277 /* LocationsListRouting.swift */; };
+		6DFF697E2B3B4114002F9277 /* LocationsResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF697D2B3B4114002F9277 /* LocationsResponseEntity.swift */; };
+		6DFF69802B3B411F002F9277 /* LocationsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFF697F2B3B411F002F9277 /* LocationsEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +86,19 @@
 		6DFF69552B3ADA3A002F9277 /* CharacterDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailInteractor.swift; sourceTree = "<group>"; };
 		6DFF69572B3ADA48002F9277 /* CharacterDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailRouter.swift; sourceTree = "<group>"; };
 		6DFF695A2B3ADA66002F9277 /* CharacterDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailEntity.swift; sourceTree = "<group>"; };
+		6DFF69662B3B406D002F9277 /* LocationCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCellView.swift; sourceTree = "<group>"; };
+		6DFF69682B3B4075002F9277 /* LocationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListView.swift; sourceTree = "<group>"; };
+		6DFF696A2B3B4081002F9277 /* LocationsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListInteractor.swift; sourceTree = "<group>"; };
+		6DFF696C2B3B408A002F9277 /* LocationsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListPresenter.swift; sourceTree = "<group>"; };
+		6DFF696E2B3B4092002F9277 /* LocationsListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListRouter.swift; sourceTree = "<group>"; };
+		6DFF69702B3B409D002F9277 /* LocationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCellViewModel.swift; sourceTree = "<group>"; };
+		6DFF69722B3B40A4002F9277 /* LocationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapper.swift; sourceTree = "<group>"; };
+		6DFF69742B3B40B0002F9277 /* LocationsListInteractable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListInteractable.swift; sourceTree = "<group>"; };
+		6DFF69762B3B40B8002F9277 /* LocationsListPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListPresentable.swift; sourceTree = "<group>"; };
+		6DFF69782B3B40C1002F9277 /* LocationsListUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListUI.swift; sourceTree = "<group>"; };
+		6DFF697A2B3B40CD002F9277 /* LocationsListRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListRouting.swift; sourceTree = "<group>"; };
+		6DFF697D2B3B4114002F9277 /* LocationsResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsResponseEntity.swift; sourceTree = "<group>"; };
+		6DFF697F2B3B411F002F9277 /* LocationsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +137,8 @@
 				6DFF690A2B3ACF8A002F9277 /* ViewController.swift */,
 				6DFF691B2B3ACFC7002F9277 /* CharactersList */,
 				6DFF69422B3AD9A3002F9277 /* CharacterDetail */,
+				6DFF69622B3B4024002F9277 /* LocationsList */,
+				6DFF69632B3B402C002F9277 /* LocationDetail */,
 				6DFF691A2B3ACFAA002F9277 /* UI */,
 				6DFF690C2B3ACF8A002F9277 /* Main.storyboard */,
 				6DFF69142B3ACF8D002F9277 /* Info.plist */,
@@ -130,14 +158,14 @@
 		6DFF691B2B3ACFC7002F9277 /* CharactersList */ = {
 			isa = PBXGroup;
 			children = (
-				6DFF692E2B3AD19A002F9277 /* Entities */,
-				6DFF69232B3AD147002F9277 /* ViewModel */,
 				6DFF69222B3AD129002F9277 /* Interfaces */,
+				6DFF69232B3AD147002F9277 /* ViewModel */,
 				6DFF69242B3AD169002F9277 /* CharacterCellView.swift */,
 				6DFF69262B3AD173002F9277 /* CharactersListView.swift */,
 				6DFF69282B3AD181002F9277 /* CharactersListInteractor.swift */,
 				6DFF692A2B3AD18C002F9277 /* CharactersListPresenter.swift */,
 				6DFF692C2B3AD196002F9277 /* CharactersListRouter.swift */,
+				6DFF692E2B3AD19A002F9277 /* Entities */,
 			);
 			path = CharactersList;
 			sourceTree = "<group>";
@@ -174,13 +202,13 @@
 		6DFF69422B3AD9A3002F9277 /* CharacterDetail */ = {
 			isa = PBXGroup;
 			children = (
-				6DFF69592B3ADA4E002F9277 /* Entities */,
-				6DFF69442B3AD9C3002F9277 /* ViewModel */,
 				6DFF69432B3AD9BB002F9277 /* Interfaces */,
+				6DFF69442B3AD9C3002F9277 /* ViewModel */,
 				6DFF69512B3ADA22002F9277 /* CharacterDetailView.swift */,
 				6DFF69532B3ADA2C002F9277 /* CharacterDetailPresenter.swift */,
 				6DFF69552B3ADA3A002F9277 /* CharacterDetailInteractor.swift */,
 				6DFF69572B3ADA48002F9277 /* CharacterDetailRouter.swift */,
+				6DFF69592B3ADA4E002F9277 /* Entities */,
 			);
 			path = CharacterDetail;
 			sourceTree = "<group>";
@@ -209,6 +237,57 @@
 			isa = PBXGroup;
 			children = (
 				6DFF695A2B3ADA66002F9277 /* CharacterDetailEntity.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		6DFF69622B3B4024002F9277 /* LocationsList */ = {
+			isa = PBXGroup;
+			children = (
+				6DFF69642B3B404D002F9277 /* Interfaces */,
+				6DFF69652B3B405A002F9277 /* ViewModel */,
+				6DFF69662B3B406D002F9277 /* LocationCellView.swift */,
+				6DFF69682B3B4075002F9277 /* LocationsListView.swift */,
+				6DFF696A2B3B4081002F9277 /* LocationsListInteractor.swift */,
+				6DFF696C2B3B408A002F9277 /* LocationsListPresenter.swift */,
+				6DFF696E2B3B4092002F9277 /* LocationsListRouter.swift */,
+				6DFF697C2B3B4102002F9277 /* Entities */,
+			);
+			path = LocationsList;
+			sourceTree = "<group>";
+		};
+		6DFF69632B3B402C002F9277 /* LocationDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LocationDetail;
+			sourceTree = "<group>";
+		};
+		6DFF69642B3B404D002F9277 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				6DFF69742B3B40B0002F9277 /* LocationsListInteractable.swift */,
+				6DFF69762B3B40B8002F9277 /* LocationsListPresentable.swift */,
+				6DFF69782B3B40C1002F9277 /* LocationsListUI.swift */,
+				6DFF697A2B3B40CD002F9277 /* LocationsListRouting.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		6DFF69652B3B405A002F9277 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6DFF69702B3B409D002F9277 /* LocationCellViewModel.swift */,
+				6DFF69722B3B40A4002F9277 /* LocationMapper.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6DFF697C2B3B4102002F9277 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				6DFF697D2B3B4114002F9277 /* LocationsResponseEntity.swift */,
+				6DFF697F2B3B411F002F9277 /* LocationsEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -292,16 +371,25 @@
 			files = (
 				6DFF694E2B3ADA0B002F9277 /* CharacterDetailViewModel.swift in Sources */,
 				6DFF69292B3AD181002F9277 /* CharactersListInteractor.swift in Sources */,
+				6DFF69692B3B4075002F9277 /* LocationsListView.swift in Sources */,
+				6DFF697B2B3B40CD002F9277 /* LocationsListRouting.swift in Sources */,
 				6DFF693D2B3AD614002F9277 /* CharactersListPresentable.swift in Sources */,
 				6DFF69502B3ADA16002F9277 /* CharacterDetailMapper.swift in Sources */,
 				6DFF690B2B3ACF8A002F9277 /* ViewController.swift in Sources */,
+				6DFF69672B3B406D002F9277 /* LocationCellView.swift in Sources */,
+				6DFF69732B3B40A4002F9277 /* LocationMapper.swift in Sources */,
 				6DFF692D2B3AD196002F9277 /* CharactersListRouter.swift in Sources */,
 				6DFF69462B3AD9D6002F9277 /* CharacterDetailInteractable.swift in Sources */,
+				6DFF696D2B3B408A002F9277 /* LocationsListPresenter.swift in Sources */,
+				6DFF69792B3B40C1002F9277 /* LocationsListUI.swift in Sources */,
 				6DFF69272B3AD173002F9277 /* CharactersListView.swift in Sources */,
+				6DFF69712B3B409D002F9277 /* LocationCellViewModel.swift in Sources */,
 				6DFF693F2B3AD638002F9277 /* CharactersListUI.swift in Sources */,
 				6DFF694C2B3AD9F6002F9277 /* CharacterDetailRouting.swift in Sources */,
 				6DFF69362B3AD387002F9277 /* CharacterCellViewModel.swift in Sources */,
+				6DFF69752B3B40B0002F9277 /* LocationsListInteractable.swift in Sources */,
 				6DFF69302B3AD1D8002F9277 /* CharactersResponseEntity.swift in Sources */,
+				6DFF69772B3B40B8002F9277 /* LocationsListPresentable.swift in Sources */,
 				6DFF69522B3ADA22002F9277 /* CharacterDetailView.swift in Sources */,
 				6DFF69072B3ACF8A002F9277 /* AppDelegate.swift in Sources */,
 				6DFF692B2B3AD18C002F9277 /* CharactersListPresenter.swift in Sources */,
@@ -313,10 +401,14 @@
 				6DFF69542B3ADA2C002F9277 /* CharacterDetailPresenter.swift in Sources */,
 				6DFF69322B3AD20D002F9277 /* CharactersEntity.swift in Sources */,
 				6DFF69482B3AD9E3002F9277 /* CharacterDetailPresenterUI.swift in Sources */,
+				6DFF696B2B3B4081002F9277 /* LocationsListInteractor.swift in Sources */,
+				6DFF69802B3B411F002F9277 /* LocationsEntity.swift in Sources */,
 				6DFF69342B3AD2CF002F9277 /* CharactersListInteractable.swift in Sources */,
 				6DFF694A2B3AD9EE002F9277 /* CharacterDetailPresentable.swift in Sources */,
+				6DFF696F2B3B4092002F9277 /* LocationsListRouter.swift in Sources */,
 				6DFF69382B3AD3FB002F9277 /* CharacterMapper.swift in Sources */,
 				6DFF69092B3ACF8A002F9277 /* SceneDelegate.swift in Sources */,
+				6DFF697E2B3B4114002F9277 /* LocationsResponseEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

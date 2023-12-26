@@ -12,7 +12,9 @@ import Kingfisher
 class CharacterCellView: UITableViewCell {
     let characterImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 35
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -20,19 +22,18 @@ class CharacterCellView: UITableViewCell {
     let characterName: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.font = .systemFont(ofSize: 32,
-                                 weight: .bold,
-                                 width: .condensed)
+        label.font = .systemFont(ofSize: 20,
+                                 weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
         return label
     }()
     
     let characterStatus: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 12,
-                                 weight: .regular,
-                                 width: .standard)
+        label.font = .systemFont(ofSize: 14,
+                                 weight: .medium)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -42,11 +43,16 @@ class CharacterCellView: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 12,
-                                 weight: .regular,
-                                 width: .standard)
+                                 weight: .medium)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    let chevronImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(systemName: "chevron.right"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -63,28 +69,31 @@ class CharacterCellView: UITableViewCell {
         addSubview(characterName)
         addSubview(characterStatus)
         addSubview(characterSpecie)
+        addSubview(chevronImageView)
         
+        let padding: CGFloat = 8
+
         NSLayoutConstraint.activate([
-            characterImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            characterImageView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-            characterImageView.heightAnchor.constraint(equalToConstant: 200),
-            characterImageView.widthAnchor.constraint(equalToConstant: 200),
-            characterImageView.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -12),
+            characterImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            characterImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            characterImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
+            characterImageView.widthAnchor.constraint(equalToConstant: 100),
+            characterImageView.heightAnchor.constraint(equalToConstant: 100),
             
+            characterName.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            characterName.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 8),
+            characterName.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            characterStatus.topAnchor.constraint(equalTo: characterName.bottomAnchor, constant: 4),
+            characterStatus.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 8),
+            
+            characterSpecie.topAnchor.constraint(equalTo: characterStatus.bottomAnchor, constant: 4),
+            characterSpecie.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 8),
 
-            characterName.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 18),
-            characterName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-            characterName.topAnchor.constraint(equalTo: characterImageView.topAnchor, constant: 24),
-            
-            characterStatus.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 20),
-            characterStatus.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-            characterStatus.topAnchor.constraint(equalTo: characterName.bottomAnchor, constant: 8),
-            
-            characterSpecie.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 20),
-            characterSpecie.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-            characterSpecie.topAnchor.constraint(equalTo: characterStatus.bottomAnchor, constant: 8),
-            characterSpecie.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -12)
-
+            chevronImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            chevronImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            chevronImageView.widthAnchor.constraint(equalToConstant: 10),
+            chevronImageView.heightAnchor.constraint(equalToConstant: 10),
         ])
     }
     

@@ -11,6 +11,8 @@ class CharacterDetailPresenter: CharacterDetailPresentable {
     private let characterDetailInteractor: CharacterDetailInteractable
     let characterURL: URL
     private let characterDetailMapper: CharacterDetailMapper
+    var characterModel: CharacterDetailViewModel?
+
     weak var ui: CharacterDetailPresenterUI?
     
     init(characterDetailInteractor: CharacterDetailInteractable, characterURL: URL, characterDetailMapper: CharacterDetailMapper) {
@@ -22,9 +24,9 @@ class CharacterDetailPresenter: CharacterDetailPresentable {
     func onViewAppear() {
         Task {
             let model = await characterDetailInteractor.getDetailCharacter(withURL: characterURL)
-            let viewModel = characterDetailMapper.map(entity: model)
+            characterModel = characterDetailMapper.map(entity: model)
             await MainActor.run {
-                self.ui?.updateUI(viewModel: viewModel)
+                self.ui?.updateUI(viewModel: characterModel!)
             }
         }
     }

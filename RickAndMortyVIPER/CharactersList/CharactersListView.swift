@@ -14,7 +14,6 @@ class CharactersListView: UIViewController {
     var charactersTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.estimatedRowHeight = 120
         tableView.register(CharacterCellView.self, forCellReuseIdentifier: "CharacterCellView")
         return tableView
     }()
