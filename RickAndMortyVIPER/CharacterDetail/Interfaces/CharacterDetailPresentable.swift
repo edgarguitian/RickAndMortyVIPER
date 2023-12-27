@@ -12,4 +12,5 @@ protocol CharacterDetailPresentable: AnyObject {
     var characterURL: URL { get }
     var characterModel: CharacterDetailViewModel? { get }
     func onViewAppear()
+    func onTapCell(atIndex: Int)
 }

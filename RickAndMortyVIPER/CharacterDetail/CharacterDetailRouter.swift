@@ -10,15 +10,30 @@ import UIKit
 
 class CharacterDetailRouter: CharacterDetailRouting {
 
+    var characterDetailView: CharacterDetailView?
+
     func showDetail(fromViewController: UIViewController, withCharacterURL characterURL: URL) {
-        let interactor = CharacterDetailInteractor()
-        let presenter = CharacterDetailPresenter(characterDetailInteractor: interactor,
+        let interactorCharacter = CharacterDetailInteractor()
+        let interactorEpisodes = EpisodeDetailInteractor()
+        let presenter = CharacterDetailPresenter(characterDetailInteractor: interactorCharacter,
+                                                 episodeDetailInteractor: interactorEpisodes,
                                                  characterURL: characterURL,
-                                                 characterDetailMapper: CharacterDetailMapper())
-        let view = CharacterDetailView(presenter: presenter)
-        presenter.ui = view
+                                                 characterDetailMapper: CharacterDetailMapper(),
+                                                 episodeDetailMapper: EpisodeDetailMapper(),
+                                                 router: self)
+        characterDetailView = CharacterDetailView(presenter: presenter)
+        presenter.ui = characterDetailView
         
-        fromViewController.present(view, animated: true)
+        fromViewController.present(characterDetailView!, animated: true)
+    }
+    
+    func showDetailEpisode(withEpisodeURL episodeURL: URL) {
+            guard let characterDetailView = characterDetailView else {
+                return
+            }
+            
+        EpisodeDetailRouter().showDetail(fromViewController: characterDetailView, withEpisodeURL: episodeURL)
+     
     }
     
     

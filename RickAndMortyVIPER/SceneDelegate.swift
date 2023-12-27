@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         let charactersListView = charactersListRouter.createCharactersList()
+        
         let locationsListView = locationsListRouter.createLocationsList()
         let episodesListView = episodesListRouter.createEpisodesList()
         

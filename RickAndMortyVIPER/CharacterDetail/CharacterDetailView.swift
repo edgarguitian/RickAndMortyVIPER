@@ -33,7 +33,7 @@ class CharacterDetailView: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = .white
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "EpisodeCell")
+        tableView.register(EpisodeCellView.self, forCellReuseIdentifier: "EpisodeCell")
         return tableView
     }()
     
@@ -105,12 +105,13 @@ extension CharacterDetailView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCell", for: indexPath) as! EpisodeCellView
         guard let characterModel = presenter.characterModel else {
             return cell
         }
         let episode = characterModel.episode[indexPath.row]
-        cell.textLabel?.text = episode
+        cell.episodeName.text = episode.name
+        cell.episodeDescription.text = episode.episode
         cell.backgroundColor = .white
         return cell
     }
@@ -140,6 +141,10 @@ extension CharacterDetailView: UITableViewDelegate, UITableViewDataSource {
         ])
         
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.onTapCell(atIndex: indexPath.row)
     }
 }
 

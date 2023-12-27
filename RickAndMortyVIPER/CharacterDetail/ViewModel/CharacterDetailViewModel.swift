@@ -15,7 +15,7 @@ struct CharacterDetailViewModel {
     var gender: String
     var origin: String
     var location: String
-    var episode: [String]
+    var episode: [CharacterDetailEpisodeViewModel]
     var image: URL?
     
     

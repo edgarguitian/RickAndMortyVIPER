@@ -11,7 +11,7 @@ import UIKit
 class CharactersListRouter: CharactersListRouting {
     var detailRouter: CharacterDetailRouting?
     var charactersListView: CharactersListView?
-    
+
     func createCharactersList() -> CharactersListView {
         let interactor = CharactersListInteractor()
         let presenter = CharactersListPresenter(charactersListInteractor: interactor, characterMapper: CharacterMapper(), router: self)

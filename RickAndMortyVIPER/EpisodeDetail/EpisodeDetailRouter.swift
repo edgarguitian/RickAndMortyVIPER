@@ -10,9 +10,9 @@ import UIKit
 
 class EpisodeDetailRouter: EpisodeDetailRouting {
 
-    func showDetail(fromViewController: UIViewController, withEpisodeURL EpisodeURL: URL) {
+    func showDetail(fromViewController: UIViewController, withEpisodeURL episodeURL: URL) {
         let interactor = EpisodeDetailInteractor()
-        let presenter = EpisodeDetailPresenter(episodeDetailInteractor: interactor, episodeURL: EpisodeURL, episodeDetailMapper: EpisodeDetailMapper())
+        let presenter = EpisodeDetailPresenter(episodeDetailInteractor: interactor, episodeURL: episodeURL, episodeDetailMapper: EpisodeDetailMapper())
         let view = EpisodeDetailView(presenter: presenter)
         presenter.ui = view
         
