@@ -8,5 +8,5 @@
 import Foundation
 
 protocol CharactersListInteractable: AnyObject {
-    func getCharactersList() async -> CharactersResponseEntity
+    func getCharactersList(page: Int) async -> CharactersResponseEntity
 }

@@ -20,6 +20,8 @@ class CharactersListPresenter: CharactersListPresentable {
     let charactersGender: [String] = ["female", "male", "genderless", "unknown"]
     var selectedStatusIndex: Int?
     var selectedGenderIndex: Int?
+    private var currentPage: Int = 1
+    private var numPages: Int = -1
     
     init(charactersListInteractor: CharactersListInteractable,
          characterMapper: CharacterMapper,
@@ -30,11 +32,22 @@ class CharactersListPresenter: CharactersListPresentable {
     }
     
     func onViewAppear() {
-        Task {
-            models = await charactersListInteractor.getCharactersList().results
-            charactersModels = models.map(characterMapper.map(entity:))
-            filteredCharacters = charactersModels
-            ui?.update(characters: charactersModels)
+        if numPages == -1 {
+            loadCharacters(page: currentPage)
+        }
+    }
+    
+    private func loadCharacters(page: Int) {
+        if numPages == -1 || page <= numPages {
+            Task {
+                let charactersResult = await charactersListInteractor.getCharactersList(page: page)
+                numPages = charactersResult.info.pages
+                let newCharacters = charactersResult.results
+                let newModels = newCharacters.map(characterMapper.map(entity:))
+                charactersModels.append(contentsOf: newModels)
+                filteredCharacters = charactersModels
+                ui?.update(characters: charactersModels)
+            }
         }
     }
     
@@ -54,15 +67,15 @@ class CharactersListPresenter: CharactersListPresentable {
     func filterCharacters() {
         let hasStatusFilter = selectedStatusIndex != nil && selectedStatusIndex! > -1
         let hasGenderFilter = selectedGenderIndex != nil && selectedGenderIndex! > -1
-
+        
         filteredCharacters = charactersModels.filter { result in
             let matchesStatus = !hasStatusFilter || result.status.lowercased() == charactersStatus[selectedStatusIndex!]
             let matchesGender = !hasGenderFilter || result.gender.lowercased() == charactersGender[selectedGenderIndex!]
-
+            
             return matchesStatus && matchesGender
         }
         ui?.update(characters: filteredCharacters)
-
+        
     }
     
     func handleFilterButtonTap() {
@@ -74,6 +87,11 @@ class CharactersListPresenter: CharactersListPresentable {
         selectedGenderIndex = nil
         filteredCharacters = charactersModels
         ui?.update(characters: filteredCharacters)
-
+        
+    }
+    
+    func loadMoreData() {
+        currentPage += 1
+        loadCharacters(page: currentPage)
     }
 }

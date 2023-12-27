@@ -17,6 +17,7 @@ protocol CharactersListPresentable: AnyObject {
     func handleFilterButtonTap()
     func resetFilters()
     func filterCharacters()
+    func loadMoreData()
     var charactersStatus: [String] { get }
     var charactersGender: [String] { get }
     var selectedStatusIndex: Int? { get set }
