@@ -24,9 +24,16 @@ class LocationDetailRouter: LocationDetailRouting {
                                                 characterDetailMapper: CharacterDetailMapper(),
                                                 router: self)
         locationDetailView = LocationDetailView(presenter: presenter)
+        guard let locationDetailView = locationDetailView else {
+            return
+        }
+        locationDetailView.hidesBottomBarWhenPushed = true
         presenter.ui = locationDetailView
-        
-        fromViewController.present(locationDetailView!, animated: true)
+        if let navigationController = fromViewController.navigationController {
+            navigationController.pushViewController(locationDetailView, animated: true)
+        } else {
+            fromViewController.present(locationDetailView, animated: true)
+        }
     }
     
     func showDetailResident(withResidentURL residentURL: URL) {

@@ -154,7 +154,7 @@ extension EpisodeDetailView: EpisodeDetailPresenterUI {
         
         episodeName.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            episodeName.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
+            episodeName.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             episodeName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             episodeName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])

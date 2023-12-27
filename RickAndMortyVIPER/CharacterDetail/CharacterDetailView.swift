@@ -12,6 +12,18 @@ import Kingfisher
 class CharacterDetailView: UIViewController {
     private let presenter: CharacterDetailPresentable
     
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    let contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     let characterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -150,31 +162,46 @@ extension CharacterDetailView: CharacterDetailPresenterUI {
     func updateUI(viewModel: CharacterDetailViewModel) {
         characterImageView.kf.setImage(with: viewModel.image)
         characterName.text = viewModel.name
+        view.addSubview(scrollView)
+                scrollView.addSubview(contentView)
         let statusSectionTitleLabel = createTitleSection(title: "INFO")
-        view.addSubview(statusSectionTitleLabel)
+        contentView.addSubview(statusSectionTitleLabel)
         let statusStackView = createInfoStackView(title: "🟢 Status", value: viewModel.status)
         let speciesStackView = createInfoStackView(title: "🧬 Species", value: viewModel.species)
         let genderStackView = createInfoStackView(title: "👤 Gender", value: viewModel.gender)
         
         let locationSectionTitleLabel = createTitleSection(title: "LOCATION")
-        view.addSubview(locationSectionTitleLabel)
+        contentView.addSubview(locationSectionTitleLabel)
         let originStackView = createInfoStackView(title: "📍 Origin", value: viewModel.origin)
         let locationStackView = createInfoStackView(title: "🗺 Location", value: viewModel.location)
         
-        view.addSubview(characterImageView)
-        view.addSubview(characterName)
-        view.addSubview(statusSectionTitleLabel)
-        view.addSubview(statusStackView)
-        view.addSubview(speciesStackView)
-        view.addSubview(genderStackView)
-        view.addSubview(originStackView)
-        view.addSubview(locationStackView)
-        view.addSubview(characterTableView)
+        contentView.addSubview(characterImageView)
+        contentView.addSubview(characterName)
+        contentView.addSubview(statusSectionTitleLabel)
+        contentView.addSubview(statusStackView)
+        contentView.addSubview(speciesStackView)
+        contentView.addSubview(genderStackView)
+        contentView.addSubview(originStackView)
+        contentView.addSubview(locationStackView)
+        contentView.addSubview(characterTableView)
+        
+        NSLayoutConstraint.activate([
+                    scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+                    scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                    scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                    scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                    
+                    contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+                    contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+                    contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+                    contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+                    contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+                ])
         
         characterImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            characterImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            characterImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            characterImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 16),
+            characterImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             characterImageView.widthAnchor.constraint(equalToConstant: 300),
             characterImageView.heightAnchor.constraint(equalToConstant: 300)
         ])
@@ -182,65 +209,66 @@ extension CharacterDetailView: CharacterDetailPresenterUI {
         characterName.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             characterName.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: 8),
-            characterName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            characterName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            characterName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            characterName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
         
         statusSectionTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             statusSectionTitleLabel.topAnchor.constraint(equalTo: characterName.bottomAnchor, constant: 20),
-            statusSectionTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            statusSectionTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            statusSectionTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            statusSectionTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
         
         statusStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             statusStackView.topAnchor.constraint(equalTo: statusSectionTitleLabel.bottomAnchor, constant: 10),
-            statusStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            statusStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            statusStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            statusStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
         
         speciesStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             speciesStackView.topAnchor.constraint(equalTo: statusStackView.bottomAnchor, constant: 8),
-            speciesStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            speciesStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            speciesStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            speciesStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
         
         genderStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             genderStackView.topAnchor.constraint(equalTo: speciesStackView.bottomAnchor, constant: 8),
-            genderStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            genderStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            genderStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            genderStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
         
         locationSectionTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             locationSectionTitleLabel.topAnchor.constraint(equalTo: genderStackView.bottomAnchor, constant: 30),
-            locationSectionTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            locationSectionTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            locationSectionTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            locationSectionTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
         
         originStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             originStackView.topAnchor.constraint(equalTo: locationSectionTitleLabel.bottomAnchor, constant: 8),
-            originStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            originStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            originStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            originStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
         
         locationStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             locationStackView.topAnchor.constraint(equalTo: originStackView.bottomAnchor, constant: 8),
-            locationStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            locationStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            locationStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            locationStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
         
         characterTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             characterTableView.topAnchor.constraint(equalTo: locationStackView.bottomAnchor, constant: 8),
-            characterTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            characterTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            characterTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            characterTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            characterTableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            characterTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            characterTableView.heightAnchor.constraint(equalToConstant: 400)
         ])
         self.characterTableView.reloadData()
     }

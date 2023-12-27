@@ -155,7 +155,7 @@ extension LocationDetailView: LocationDetailPresenterUI {
         
         locationName.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            locationName.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
+            locationName.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             locationName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             locationName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])

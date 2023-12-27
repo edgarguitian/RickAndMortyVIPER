@@ -22,9 +22,17 @@ class EpisodeDetailRouter: EpisodeDetailRouting {
                                                characterDetailMapper: CharacterDetailMapper(),
                                                router: self)
         episodeDetailView = EpisodeDetailView(presenter: presenter)
-        presenter.ui = episodeDetailView
+        guard let episodeDetailView = episodeDetailView else {
+            return
+        }
         
-        fromViewController.present(episodeDetailView!, animated: true)
+        episodeDetailView.hidesBottomBarWhenPushed = true
+        presenter.ui = episodeDetailView
+        if let navigationController = fromViewController.navigationController {
+            navigationController.pushViewController(episodeDetailView, animated: true)
+        } else {
+            fromViewController.present(episodeDetailView, animated: true)
+        }
     }
     
     

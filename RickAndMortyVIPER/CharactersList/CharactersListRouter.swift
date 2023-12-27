@@ -16,8 +16,9 @@ class CharactersListRouter: CharactersListRouting {
     
     func createCharactersList() -> CharactersListView {
         let interactor = CharactersListInteractor()
-        presenter = CharactersListPresenter(charactersListInteractor: interactor, characterMapper: CharacterMapper(), router: self)
-        
+        presenter = CharactersListPresenter(charactersListInteractor: interactor,
+                                            characterMapper: CharacterMapper(),
+                                            router: self)
         guard let presenter = presenter else {
             fatalError()
         }
