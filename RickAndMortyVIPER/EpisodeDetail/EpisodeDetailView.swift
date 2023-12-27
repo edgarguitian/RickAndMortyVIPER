@@ -25,7 +25,7 @@ class EpisodeDetailView: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = .white
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CharactersCell")
+        tableView.register(LocationDetailResidentCellView.self, forCellReuseIdentifier: "CharactersCell")
         return tableView
     }()
     
@@ -97,13 +97,13 @@ extension EpisodeDetailView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CharactersCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CharactersCell", for: indexPath) as! LocationDetailResidentCellView
         guard let episodeModel = presenter.episodeModel else {
             return cell
         }
-        let episode = episodeModel.characters[indexPath.row]
-        cell.textLabel?.text = episode
-        cell.backgroundColor = .white
+        let character = episodeModel.characters[indexPath.row]
+        cell.characterImageView.kf.setImage(with: character.image)
+        cell.characterName.text = character.name
         return cell
     }
     
@@ -132,6 +132,10 @@ extension EpisodeDetailView: UITableViewDelegate, UITableViewDataSource {
         ])
         
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.onTapCell(atIndex: indexPath.row)
     }
 }
 

@@ -21,6 +21,6 @@ struct CharacterDetailMapper {
         .init(id: entity.id, name: entity.name, status: entity.status,
               species: entity.species, gender: entity.gender,
               origin: entity.origin.name, location: entity.location.name,
-              episode: map(episodes: episodes), image: URL(string: entity.image))
+              episode: map(episodes: episodes), image: URL(string: entity.image), urlCharacter: URL(string: entity.urlCharacter))
     }
 }

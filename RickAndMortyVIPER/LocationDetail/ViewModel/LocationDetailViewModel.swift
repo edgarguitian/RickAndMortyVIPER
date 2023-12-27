@@ -11,6 +11,6 @@ struct LocationDetailViewModel {
     var name: String
     var type: String
     var dimension: String
-    var residents: [String]
+    var residents: [LocationDetailResidentViewModel]
     var locationURL: URL?
 }

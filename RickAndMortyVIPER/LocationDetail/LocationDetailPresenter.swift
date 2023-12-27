@@ -9,25 +9,50 @@ import Foundation
 
 class LocationDetailPresenter: LocationDetailPresentable {
     private let locationDetailInteractor: LocationDetailInteractable
+    private let characterDetailInteractor: CharacterDetailInteractable
     let locationURL: URL
     private let locationDetailMapper: LocationDetailMapper
     var locationModel: LocationDetailViewModel?
-    
+    private let characterDetailMapper: CharacterDetailMapper
+    private let router: LocationDetailRouting
+    private var infoResidents: [CharacterDetailViewModel] = []
+
     weak var ui: LocationDetailPresenterUI?
     
-    init(locationDetailInteractor: LocationDetailInteractable, locationURL: URL, locationDetailMapper: LocationDetailMapper) {
+    init(locationDetailInteractor: LocationDetailInteractable,
+         characterDetailInteractor: CharacterDetailInteractable,
+         locationURL: URL,
+         locationDetailMapper: LocationDetailMapper,
+         characterDetailMapper: CharacterDetailMapper,
+         router: LocationDetailRouting) {
         self.locationDetailInteractor = locationDetailInteractor
+        self.characterDetailInteractor = characterDetailInteractor
         self.locationURL = locationURL
         self.locationDetailMapper = locationDetailMapper
+        self.characterDetailMapper = characterDetailMapper
+        self.router = router
     }
     
     func onViewAppear() {
         Task {
             let model = await locationDetailInteractor.getDetailLocation(withURL: locationURL)
-            locationModel = locationDetailMapper.map(entity: model)
+            for characterItem in 0..<model.residents.count {
+                let character = await characterDetailInteractor.getDetailCharacter(withURL: URL(string: model.residents[characterItem])!)
+                let characterModel = characterDetailMapper.map(entity: character, episodes: [])
+                infoResidents.append(characterModel)
+            }
+            locationModel = locationDetailMapper.map(entity: model, residents: infoResidents)
             await MainActor.run {
                 self.ui?.updateUI(viewModel: locationModel!)
             }
         }
+    }
+    
+    func onTapCell(atIndex: Int) {
+        let residentURL = infoResidents[atIndex].urlCharacter
+        guard let residentURL = residentURL else {
+            return
+        }
+        router.showDetailResident(withResidentURL: residentURL)
     }
 }

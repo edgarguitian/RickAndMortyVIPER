@@ -12,5 +12,5 @@ struct EpisodeDetailViewModel{
     var airDate: String
     var episode: String
     var urlEpisode: URL?
-    var characters: [String]
+    var characters: [LocationDetailResidentViewModel]
 }

@@ -11,4 +11,5 @@ import UIKit
 protocol LocationDetailRouting: AnyObject {
     func showDetail(fromViewController: UIViewController,
                     withLocationURL locationURL: URL)
+    func showDetailResident(withResidentURL residentURL: URL)
 }

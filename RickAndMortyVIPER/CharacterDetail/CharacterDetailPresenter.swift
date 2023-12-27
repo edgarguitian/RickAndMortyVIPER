@@ -38,7 +38,7 @@ class CharacterDetailPresenter: CharacterDetailPresentable {
             let model = await characterDetailInteractor.getDetailCharacter(withURL: characterURL)
             for episodeItem in 0..<model.episode.count {
                 let episode = await episodeDetailInteractor.getDetailEpisode(withURL: URL(string: model.episode[episodeItem])!)
-                let episodeModel = episodeDetailMapper.map(entity: episode)
+                let episodeModel = episodeDetailMapper.map(entity: episode, characters: [])
                 infoEpisodes.append(episodeModel)
             }
             characterModel = characterDetailMapper.map(entity: model, episodes: infoEpisodes)

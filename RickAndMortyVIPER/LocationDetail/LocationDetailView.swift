@@ -25,7 +25,7 @@ class LocationDetailView: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = .white
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ResidentCell")
+        tableView.register(LocationDetailResidentCellView.self, forCellReuseIdentifier: "ResidentCell")
         return tableView
     }()
     
@@ -97,12 +97,13 @@ extension LocationDetailView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ResidentCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ResidentCell", for: indexPath) as! LocationDetailResidentCellView
         guard let locationModel = presenter.locationModel else {
             return cell
         }
-        let episode = locationModel.residents[indexPath.row]
-        cell.textLabel?.text = episode
+        let resident = locationModel.residents[indexPath.row]
+        cell.characterImageView.kf.setImage(with: resident.image)
+        cell.characterName.text = resident.name
         cell.backgroundColor = .white
         return cell
     }
@@ -132,6 +133,10 @@ extension LocationDetailView: UITableViewDelegate, UITableViewDataSource {
         ])
         
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.onTapCell(atIndex: indexPath.row)
     }
 }
 

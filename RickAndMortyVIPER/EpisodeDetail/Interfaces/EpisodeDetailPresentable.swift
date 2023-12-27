@@ -12,4 +12,5 @@ protocol EpisodeDetailPresentable: AnyObject {
     var episodeURL: URL { get }
     var episodeModel: EpisodeDetailViewModel? { get }
     func onViewAppear()
+    func onTapCell(atIndex: Int)
 }

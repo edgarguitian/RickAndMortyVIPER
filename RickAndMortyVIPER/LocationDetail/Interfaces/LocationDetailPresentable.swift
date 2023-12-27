@@ -12,4 +12,5 @@ protocol LocationDetailPresentable: AnyObject {
     var locationURL: URL { get }
     var locationModel: LocationDetailViewModel? { get }
     func onViewAppear()
+    func onTapCell(atIndex: Int)
 }

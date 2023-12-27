@@ -11,4 +11,5 @@ import UIKit
 protocol EpisodeDetailRouting: AnyObject {
     func showDetail(fromViewController: UIViewController,
                     withEpisodeURL episodeURL: URL)
+    func showDetailCharacters(withCharacterURL characterURL: URL)
 }
