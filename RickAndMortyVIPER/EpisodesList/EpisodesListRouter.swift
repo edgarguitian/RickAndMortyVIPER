@@ -12,14 +12,13 @@ class EpisodesListRouter: EpisodesListRouting {
     var detailRouter: EpisodeDetailRouting?
     var episodesListView: EpisodesListView?
     
-    func showEpisodesList(window: UIWindow?) {
+    func createEpisodesList() -> EpisodesListView {
         let interactor = EpisodesListInteractor()
         let presenter = EpisodesListPresenter(episodesListInteractor: interactor, episodeMapper: EpisodeMapper(), router: self)
         episodesListView = EpisodesListView(presenter: presenter)
         presenter.ui = episodesListView
         detailRouter = EpisodeDetailRouter()
-        window?.rootViewController = episodesListView
-        window?.makeKeyAndVisible()
+        return episodesListView!
     }
     
     func showDetailEpisode(withEpisodeURL episodeURL: URL) {

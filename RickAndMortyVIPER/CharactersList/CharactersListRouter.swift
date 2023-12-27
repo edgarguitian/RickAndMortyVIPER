@@ -12,14 +12,13 @@ class CharactersListRouter: CharactersListRouting {
     var detailRouter: CharacterDetailRouting?
     var charactersListView: CharactersListView?
     
-    func showCharactersList(window: UIWindow?) {
+    func createCharactersList() -> CharactersListView {
         let interactor = CharactersListInteractor()
         let presenter = CharactersListPresenter(charactersListInteractor: interactor, characterMapper: CharacterMapper(), router: self)
         charactersListView = CharactersListView(presenter: presenter)
         presenter.ui = charactersListView
         detailRouter = CharacterDetailRouter()
-        window?.rootViewController = charactersListView
-        window?.makeKeyAndVisible()
+        return charactersListView!
     }
     
     func showDetailCharacter(withCharacterURL characterURL: URL) {

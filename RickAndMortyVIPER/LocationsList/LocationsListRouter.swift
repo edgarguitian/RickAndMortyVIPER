@@ -12,14 +12,13 @@ class LocationsListRouter: LocationsListRouting {
     var detailRouter: LocationDetailRouting?
     var locationsListView: LocationsListView?
     
-    func showLocationsList(window: UIWindow?) {
+    func createLocationsList() -> LocationsListView {
         let interactor = LocationsListInteractor()
         let presenter = LocationsListPresenter(locationsListInteractor: interactor, locationMapper: LocationMapper(), router: self)
         locationsListView = LocationsListView(presenter: presenter)
         presenter.ui = locationsListView
         detailRouter = LocationDetailRouter()
-        window?.rootViewController = locationsListView
-        window?.makeKeyAndVisible()
+        return locationsListView!
     }
     
     func showDetailLocation(withLocationURL locationURL: URL) {

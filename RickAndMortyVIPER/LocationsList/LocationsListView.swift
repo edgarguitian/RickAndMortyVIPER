@@ -32,6 +32,9 @@ class LocationsListView: UIViewController {
         
         setupTableView()
         presenter.onViewAppear()
+        
+        self.navigationItem.title = "Locations"
+
     }
     
     private func setupTableView() {

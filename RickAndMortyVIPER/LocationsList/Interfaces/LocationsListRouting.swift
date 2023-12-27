@@ -12,6 +12,6 @@ protocol LocationsListRouting: AnyObject {
     var detailRouter: LocationDetailRouting? { get }
     var locationsListView: LocationsListView? { get }
     
-    func showLocationsList(window: UIWindow?)
+    func createLocationsList() -> LocationsListView
     func showDetailLocation(withLocationURL locationURL: URL)
 }

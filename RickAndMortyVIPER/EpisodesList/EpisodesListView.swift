@@ -32,6 +32,9 @@ class EpisodesListView: UIViewController {
         
         setupTableView()
         presenter.onViewAppear()
+        
+        self.navigationItem.title = "Episodes"
+
     }
     
     private func setupTableView() {

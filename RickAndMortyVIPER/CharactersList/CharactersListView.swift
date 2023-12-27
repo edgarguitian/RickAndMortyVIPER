@@ -32,6 +32,9 @@ class CharactersListView: UIViewController {
         
         setupTableView()
         presenter.onViewAppear()
+        
+        self.navigationItem.title = "Characters"
+
     }
     
     private func setupTableView() {

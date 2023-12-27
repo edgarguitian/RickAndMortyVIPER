@@ -12,6 +12,6 @@ protocol EpisodesListRouting: AnyObject {
     var detailRouter: EpisodeDetailRouting? { get }
     var episodesListView: EpisodesListView? { get }
     
-    func showEpisodesList(window: UIWindow?)
+    func createEpisodesList() -> EpisodesListView
     func showDetailEpisode(withEpisodeURL episodeURL: URL)
 }
