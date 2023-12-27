@@ -11,6 +11,7 @@ struct CharacterCellViewModel {
     var name: String
     var status: String
     var species: String
+    var gender: String
     var characterURL: URL?
     var imageURL: URL?
 }

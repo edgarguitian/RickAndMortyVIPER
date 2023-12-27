@@ -20,6 +20,10 @@ class CharactersListView: UIViewController {
     
     private let searchController = UISearchController()
     
+    private lazy var filterButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(filterButtonTapped))
+        return button
+    }()
     
     init(presenter: CharactersListPresentable) {
         self.presenter = presenter
@@ -32,12 +36,16 @@ class CharactersListView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupNavigationBar()
         setupTableView()
         presenter.onViewAppear()
         
         self.navigationItem.title = "Characters"
         
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = filterButton
     }
     
     private func setupTableView() {
@@ -60,6 +68,10 @@ class CharactersListView: UIViewController {
         charactersTableView.dataSource = self
         charactersTableView.delegate = self
         
+    }
+    
+    @objc private func filterButtonTapped() {
+        presenter.handleFilterButtonTap()
     }
     
 }

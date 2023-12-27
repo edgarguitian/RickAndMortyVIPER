@@ -16,6 +16,10 @@ class CharactersListPresenter: CharactersListPresentable {
     private var models: [CharactersEntity] = []
     private let characterMapper: CharacterMapper
     private let router: CharactersListRouting
+    let charactersStatus: [String] = ["alive", "dead", "unknown"]
+    let charactersGender: [String] = ["female", "male", "genderless", "unknown"]
+    var selectedStatusIndex: Int?
+    var selectedGenderIndex: Int?
     
     init(charactersListInteractor: CharactersListInteractable,
          characterMapper: CharacterMapper,
@@ -45,5 +49,31 @@ class CharactersListPresenter: CharactersListPresentable {
     func updateFilteredCharacters(_ characters: [CharacterCellViewModel]) {
         filteredCharacters = characters
         ui?.update(characters: filteredCharacters)
+    }
+    
+    func filterCharacters() {
+        let hasStatusFilter = selectedStatusIndex != nil && selectedStatusIndex! > -1
+        let hasGenderFilter = selectedGenderIndex != nil && selectedGenderIndex! > -1
+
+        filteredCharacters = charactersModels.filter { result in
+            let matchesStatus = !hasStatusFilter || result.status.lowercased() == charactersStatus[selectedStatusIndex!]
+            let matchesGender = !hasGenderFilter || result.gender.lowercased() == charactersGender[selectedGenderIndex!]
+
+            return matchesStatus && matchesGender
+        }
+        ui?.update(characters: filteredCharacters)
+
+    }
+    
+    func handleFilterButtonTap() {
+        router.showFilterView()
+    }
+    
+    func resetFilters() {
+        selectedStatusIndex = nil
+        selectedGenderIndex = nil
+        filteredCharacters = charactersModels
+        ui?.update(characters: filteredCharacters)
+
     }
 }

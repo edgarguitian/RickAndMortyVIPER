@@ -25,13 +25,12 @@ class CharacterDetailView: UIViewController {
         let label = UILabel()
         label.numberOfLines = 1
         label.font = .systemFont(ofSize: 32, weight: .bold)
-        label.textColor = .black
         return label
     }()
     
     var characterTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .detailBackground
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(EpisodeCellView.self, forCellReuseIdentifier: "EpisodeCell")
         return tableView
@@ -81,7 +80,7 @@ class CharacterDetailView: UIViewController {
     }
     
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = .detailBackground
         setupView()
         presenter.onViewAppear()
     }
@@ -112,7 +111,7 @@ extension CharacterDetailView: UITableViewDelegate, UITableViewDataSource {
         let episode = characterModel.episode[indexPath.row]
         cell.episodeName.text = episode.name
         cell.episodeDescription.text = episode.episode
-        cell.backgroundColor = .white
+        cell.backgroundColor = .detailBackground
         return cell
     }
     
@@ -125,11 +124,10 @@ extension CharacterDetailView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = .white 
+        headerView.backgroundColor = .detailBackground
         
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = .black
         label.text = "EPISODES (\(presenter.characterModel?.episode.count ?? 0))"
         
         headerView.addSubview(label)

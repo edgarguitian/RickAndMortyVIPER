@@ -14,4 +14,5 @@ protocol CharactersListRouting: AnyObject {
     
     func createCharactersList() -> CharactersListView
     func showDetailCharacter(withCharacterURL characterURL: URL)
+    func showFilterView()
 }

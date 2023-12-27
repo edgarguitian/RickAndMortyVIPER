@@ -9,6 +9,11 @@ import Foundation
 
 struct CharacterMapper {
     func map(entity: CharactersEntity) -> CharacterCellViewModel {
-        CharacterCellViewModel(name: entity.name, status: entity.status, species: entity.species, characterURL: URL(string: entity.urlCharacter), imageURL: URL(string: entity.image))
+        CharacterCellViewModel(name: entity.name,
+                               status: entity.status,
+                               species: entity.species,
+                               gender: entity.gender,
+                               characterURL: URL(string: entity.urlCharacter),
+                               imageURL: URL(string: entity.image))
     }
 }

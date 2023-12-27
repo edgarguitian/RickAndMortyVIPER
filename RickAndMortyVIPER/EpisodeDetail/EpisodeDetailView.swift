@@ -17,13 +17,12 @@ class EpisodeDetailView: UIViewController {
         let label = UILabel()
         label.numberOfLines = 1
         label.font = .systemFont(ofSize: 32, weight: .bold)
-        label.textColor = .black
         return label
     }()
     
     var episodeTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .detailBackground
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(LocationDetailResidentCellView.self, forCellReuseIdentifier: "CharactersCell")
         return tableView
@@ -73,7 +72,7 @@ class EpisodeDetailView: UIViewController {
     }
     
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = .detailBackground
         setupView()
         presenter.onViewAppear()
     }
@@ -116,11 +115,10 @@ extension EpisodeDetailView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = .white 
+        headerView.backgroundColor = .detailBackground
         
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = .black
         label.text = "CHARACTERS (\(presenter.episodeModel?.characters.count ?? 0))"
         
         headerView.addSubview(label)

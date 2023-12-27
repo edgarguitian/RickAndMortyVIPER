@@ -14,4 +14,11 @@ protocol CharactersListPresentable: AnyObject {
     func onViewAppear()
     func onTapCell(atIndex: Int)
     func updateFilteredCharacters(_ characters: [CharacterCellViewModel])
+    func handleFilterButtonTap()
+    func resetFilters()
+    func filterCharacters()
+    var charactersStatus: [String] { get }
+    var charactersGender: [String] { get }
+    var selectedStatusIndex: Int? { get set }
+    var selectedGenderIndex: Int? { get set }
 }

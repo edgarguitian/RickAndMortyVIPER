@@ -17,13 +17,12 @@ class LocationDetailView: UIViewController {
         let label = UILabel()
         label.numberOfLines = 1
         label.font = .systemFont(ofSize: 32, weight: .bold)
-        label.textColor = .black
         return label
     }()
     
     var locationTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .detailBackground
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(LocationDetailResidentCellView.self, forCellReuseIdentifier: "ResidentCell")
         return tableView
@@ -73,7 +72,7 @@ class LocationDetailView: UIViewController {
     }
     
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = .detailBackground
         setupView()
         presenter.onViewAppear()
     }
@@ -104,7 +103,7 @@ extension LocationDetailView: UITableViewDelegate, UITableViewDataSource {
         let resident = locationModel.residents[indexPath.row]
         cell.characterImageView.kf.setImage(with: resident.image)
         cell.characterName.text = resident.name
-        cell.backgroundColor = .white
+        cell.backgroundColor = .detailBackground
         return cell
     }
     
@@ -117,11 +116,10 @@ extension LocationDetailView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = .white 
+        headerView.backgroundColor = .detailBackground
         
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = .black
         label.text = "RESIDENTS (\(presenter.locationModel?.residents.count ?? 0))"
         
         headerView.addSubview(label)
