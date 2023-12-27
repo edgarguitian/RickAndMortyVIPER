@@ -12,6 +12,7 @@ class CharactersListPresenter: CharactersListPresentable {
     weak var ui: CharactersListUI?
     private let charactersListInteractor: CharactersListInteractable
     var charactersModels: [CharacterCellViewModel] = []
+    var filteredCharacters: [CharacterCellViewModel] = []
     private var models: [CharactersEntity] = []
     private let characterMapper: CharacterMapper
     private let router: CharactersListRouting
@@ -28,15 +29,21 @@ class CharactersListPresenter: CharactersListPresentable {
         Task {
             models = await charactersListInteractor.getCharactersList().results
             charactersModels = models.map(characterMapper.map(entity:))
+            filteredCharacters = charactersModels
             ui?.update(characters: charactersModels)
         }
     }
     
     func onTapCell(atIndex: Int) {
-        let characterURL = models[atIndex].urlCharacter
-        guard let characterURL = URL(string: characterURL) else {
+        let characterURL = filteredCharacters[atIndex].characterURL
+        guard let characterURL = characterURL else {
             return
         }
         router.showDetailCharacter(withCharacterURL: characterURL)
+    }
+    
+    func updateFilteredCharacters(_ characters: [CharacterCellViewModel]) {
+        filteredCharacters = characters
+        ui?.update(characters: filteredCharacters)
     }
 }

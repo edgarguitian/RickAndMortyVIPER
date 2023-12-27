@@ -18,6 +18,9 @@ class CharactersListView: UIViewController {
         return tableView
     }()
     
+    private let searchController = UISearchController()
+    
+    
     init(presenter: CharactersListPresentable) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -34,11 +37,12 @@ class CharactersListView: UIViewController {
         presenter.onViewAppear()
         
         self.navigationItem.title = "Characters"
-
+        
     }
     
     private func setupTableView() {
         view.addSubview(charactersTableView)
+        
         
         NSLayoutConstraint.activate([
             charactersTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -47,8 +51,15 @@ class CharactersListView: UIViewController {
             charactersTableView.topAnchor.constraint(equalTo: view.topAnchor)
         ])
         
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search Characters"
+        navigationItem.searchController = searchController
+        
+        
         charactersTableView.dataSource = self
         charactersTableView.delegate = self
+        
     }
     
 }
@@ -62,14 +73,38 @@ extension CharactersListView: CharactersListUI {
     }
 }
 
+extension CharactersListView: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        guard let searchText = searchController.searchBar.text else { return }
+        if(searchText.count > 0) {
+            let filteredCharacters = presenter.charactersModels.filter { character in
+                return character.name.lowercased().contains(searchText.lowercased()) ||
+                character.species.lowercased().contains(searchText.lowercased()) ||
+                character.status.lowercased().contains(searchText.lowercased())
+            }
+            
+            presenter.updateFilteredCharacters(filteredCharacters)
+        }
+    }
+}
+
+extension CharactersListView: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        presenter.updateFilteredCharacters(presenter.charactersModels)
+        self.view.endEditing(true)
+        
+    }
+}
+
 extension CharactersListView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter.charactersModels.count
+        presenter.filteredCharacters.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterCellView", for: indexPath) as! CharacterCellView
-        let model = presenter.charactersModels[indexPath.row]
+        let model = presenter.filteredCharacters[indexPath.row]
         
         cell.configure(model: model)
         return cell
