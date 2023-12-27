@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import UIKit
+
+protocol LocationsListRouting: AnyObject {
+    var detailRouter: LocationDetailRouting? { get }
+    var locationsListView: LocationsListView? { get }
+    
+    func showLocationsList(window: UIWindow?)
+    func showDetailLocation(withLocationURL locationURL: URL)
+}

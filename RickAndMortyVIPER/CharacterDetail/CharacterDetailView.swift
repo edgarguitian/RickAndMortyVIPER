@@ -124,22 +124,22 @@ extension CharacterDetailView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-                headerView.backgroundColor = .white // Puedes ajustar el color de fondo según tus preferencias
-                
-                let label = UILabel()
-                label.font = UIFont.boldSystemFont(ofSize: 18)
-                label.textColor = .black
-                label.text = "EPISODES (\(presenter.characterModel?.episode.count ?? 0))"
-                
-                headerView.addSubview(label)
-                label.translatesAutoresizingMaskIntoConstraints = false
-
-                NSLayoutConstraint.activate([
-                    label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
-                    label.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
-                ])
-
-                return headerView
+        headerView.backgroundColor = .white 
+        
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = .black
+        label.text = "EPISODES (\(presenter.characterModel?.episode.count ?? 0))"
+        
+        headerView.addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+            label.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
+        ])
+        
+        return headerView
     }
 }
 
