@@ -29,3 +29,4 @@ Episodes
 ## Funcionalidades extra
 
 - Caché con Core Data del listado de characters
+- Alamofire en las llamadas de detalle de characters, locations y episodes.
