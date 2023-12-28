@@ -43,7 +43,7 @@ class CharactersListPresenter: CharactersListPresentable {
             if allCharacters.count > 0 {
                 allCharacters = allCharacters.sorted(by: { $0.id < $1.id })
 
-                var newCharacters = allCharacters.map {
+                let newCharacters = allCharacters.map {
                     CharactersEntity(id: Int($0.id), name: $0.name!, status: $0.status!, species: $0.species!, gender: $0.gender!, urlCharacter: $0.urlCharacter!, image: $0.image!)
                 }
                 let newModels = newCharacters.map(characterMapper.map(entity:))
