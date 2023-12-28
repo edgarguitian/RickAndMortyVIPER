@@ -8,7 +8,7 @@
 import Foundation
 
 protocol LocationDetailPresentable: AnyObject {
-    var ui: LocationDetailPresenterUI? { get }
+    var locationDetailUI: LocationDetailPresenterUI? { get }
     var locationURL: URL { get }
     var locationModel: LocationDetailViewModel? { get }
     func onViewAppear()

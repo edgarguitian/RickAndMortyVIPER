@@ -11,5 +11,4 @@ struct EpisodeCellViewModel {
     var name: String
     var episode: String
     var urlEpisode: URL?
-
 }

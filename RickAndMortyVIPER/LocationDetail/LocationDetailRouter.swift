@@ -9,9 +9,8 @@ import Foundation
 import UIKit
 
 class LocationDetailRouter: LocationDetailRouting {
-    
-    var locationDetailView: LocationDetailView?
 
+    var locationDetailView: LocationDetailView?
 
     func showDetail(fromViewController: UIViewController, withLocationURL locationURL: URL) {
         let interactor = LocationDetailInteractor()
@@ -28,23 +27,20 @@ class LocationDetailRouter: LocationDetailRouting {
             return
         }
         locationDetailView.hidesBottomBarWhenPushed = true
-        presenter.ui = locationDetailView
+        presenter.locationDetailUI = locationDetailView
         if let navigationController = fromViewController.navigationController {
             navigationController.pushViewController(locationDetailView, animated: true)
         } else {
             fromViewController.present(locationDetailView, animated: true)
         }
     }
-    
+
     func showDetailResident(withResidentURL residentURL: URL) {
         guard let locationDetailView = locationDetailView else {
             return
         }
-        
+
         CharacterDetailRouter().showDetail(fromViewController: locationDetailView, withCharacterURL: residentURL)
     }
-    
-    
-    
-    
+
 }

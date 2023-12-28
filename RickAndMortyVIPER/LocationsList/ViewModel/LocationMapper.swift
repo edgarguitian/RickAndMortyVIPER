@@ -9,6 +9,9 @@ import Foundation
 
 struct LocationMapper {
     func map(entity: LocationsEntity) -> LocationCellViewModel {
-        LocationCellViewModel(name: entity.name, type: entity.type, dimension: entity.dimension, locationURL: URL(string: entity.urlLocation))
+        LocationCellViewModel(name: entity.name,
+                              type: entity.type,
+                              dimension: entity.dimension,
+                              locationURL: URL(string: entity.urlLocation))
     }
 }

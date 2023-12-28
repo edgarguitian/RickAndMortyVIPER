@@ -20,7 +20,7 @@ class FilterView: UIViewController {
         button.addTarget(self, action: #selector(resetFiltersButtonTapped), for: .touchUpInside)
         return button
     }()
-    
+
     init(presenter: CharactersListPresentable) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -57,19 +57,19 @@ class FilterView: UIViewController {
             statusPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             statusPicker.topAnchor.constraint(equalTo: view.topAnchor, constant: 50)
         ])
-        
+
         genderPicker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             genderPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             genderPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             genderPicker.topAnchor.constraint(equalTo: statusPicker.bottomAnchor)
         ])
-        
+
         resetFiltersButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             resetFiltersButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             resetFiltersButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            resetFiltersButton.topAnchor.constraint(equalTo: genderPicker.bottomAnchor, constant: 20),
+            resetFiltersButton.topAnchor.constraint(equalTo: genderPicker.bottomAnchor, constant: 20)
         ])
     }
 
@@ -98,7 +98,9 @@ extension FilterView: UIPickerViewDataSource, UIPickerViewDelegate {
         if row == 0 {
             return "Selecciona un \(pickerView == statusPicker ? "status" : "gender")"
         } else {
-            return pickerView == statusPicker ? presenter.charactersStatus[row - 1] : presenter.charactersGender[row - 1]
+            return pickerView == statusPicker
+            ? presenter.charactersStatus[row - 1]
+            : presenter.charactersGender[row - 1]
         }
     }
 

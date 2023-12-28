@@ -13,7 +13,7 @@ struct LocationsEntity: Decodable {
     var type: String
     var dimension: String
     var urlLocation: String
-    
+
     enum CodingKeys: String, CodingKey {
         case urlLocation = "url"
         case id, name, type, dimension

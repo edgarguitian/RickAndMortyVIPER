@@ -11,21 +11,23 @@ import UIKit
 class LocationsListRouter: LocationsListRouting {
     var detailRouter: LocationDetailRouting?
     var locationsListView: LocationsListView?
-    
+
     func createLocationsList() -> LocationsListView {
         let interactor = LocationsListInteractor()
-        let presenter = LocationsListPresenter(locationsListInteractor: interactor, locationMapper: LocationMapper(), router: self)
+        let presenter = LocationsListPresenter(locationsListInteractor: interactor,
+                                               locationMapper: LocationMapper(),
+                                               router: self)
         locationsListView = LocationsListView(presenter: presenter)
-        presenter.ui = locationsListView
+        presenter.locationListUI = locationsListView
         detailRouter = LocationDetailRouter()
         return locationsListView!
     }
-    
+
     func showDetailLocation(withLocationURL locationURL: URL) {
         guard let locationsListView = locationsListView else {
             return
         }
-        
+
         detailRouter?.showDetail(fromViewController: locationsListView, withLocationURL: locationURL)
     }
 }

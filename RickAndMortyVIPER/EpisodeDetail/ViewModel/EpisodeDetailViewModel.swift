@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EpisodeDetailViewModel{
+struct EpisodeDetailViewModel {
     var name: String
     var airDate: String
     var episode: String

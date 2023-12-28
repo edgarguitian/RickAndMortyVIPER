@@ -14,7 +14,7 @@ struct EpisodeDetailEntity: Decodable {
     var episode: String
     var urlEpisode: String
     var characters: [String]
-    
+
     enum CodingKeys: String, CodingKey {
         case urlEpisode = "url"
         case airDate = "air_date"

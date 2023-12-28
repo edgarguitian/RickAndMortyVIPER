@@ -18,7 +18,7 @@ class CharacterCellView: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+
     let characterName: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
@@ -28,7 +28,7 @@ class CharacterCellView: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-    
+
     let characterStatus: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -38,7 +38,7 @@ class CharacterCellView: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     let characterSpecie: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -48,29 +48,29 @@ class CharacterCellView: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     let chevronImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "chevron.right"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init coder has not been implemented")
     }
-    
+
     func setupViews() {
         addSubview(characterImageView)
         addSubview(characterName)
         addSubview(characterStatus)
         addSubview(characterSpecie)
         addSubview(chevronImageView)
-        
+
         let padding: CGFloat = 8
 
         NSLayoutConstraint.activate([
@@ -79,24 +79,24 @@ class CharacterCellView: UITableViewCell {
             characterImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
             characterImageView.widthAnchor.constraint(equalToConstant: 100),
             characterImageView.heightAnchor.constraint(equalToConstant: 100),
-            
+
             characterName.topAnchor.constraint(equalTo: topAnchor, constant: padding),
             characterName.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 8),
             characterName.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
+
             characterStatus.topAnchor.constraint(equalTo: characterName.bottomAnchor, constant: 4),
             characterStatus.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 8),
-            
+
             characterSpecie.topAnchor.constraint(equalTo: characterStatus.bottomAnchor, constant: 4),
             characterSpecie.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 8),
 
             chevronImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             chevronImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             chevronImageView.widthAnchor.constraint(equalToConstant: 10),
-            chevronImageView.heightAnchor.constraint(equalToConstant: 10),
+            chevronImageView.heightAnchor.constraint(equalToConstant: 10)
         ])
     }
-    
+
     func configure(model: CharacterCellViewModel) {
         characterImageView.kf.setImage(with: model.imageURL)
         characterName.text = model.name

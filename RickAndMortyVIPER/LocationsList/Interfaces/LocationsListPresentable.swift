@@ -8,7 +8,7 @@
 import Foundation
 
 protocol LocationsListPresentable: AnyObject {
-    var ui: LocationsListUI? { get }
+    var locationListUI: LocationsListUI? { get }
     var locationsModels: [LocationCellViewModel] { get }
     func onViewAppear()
     func loadMoreData()

@@ -18,5 +18,4 @@ struct CharacterDetailViewModel {
     var episode: [CharacterDetailEpisodeViewModel]
     var image: URL?
     var urlCharacter: URL?
-    
 }

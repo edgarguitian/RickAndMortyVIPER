@@ -9,8 +9,16 @@ import Foundation
 
 class EpisodesListInteractor: EpisodesListInteractable {
     func getEpisodesList(page: Int) async -> EpisodesResponseEntity {
-        let url = URL(string: "https://rickandmortyapi.com/api/episode/?page=" + String(page))!
-        let (data, _) = try! await URLSession.shared.data(from: url)
-        return try! JSONDecoder().decode(EpisodesResponseEntity.self, from: data)
+        guard let url = URL(string: "https://rickandmortyapi.com/api/episode/?page=" + String(page)) else {
+            fatalError("Error en la url de episodios")
+        }
+
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let decodedData = try JSONDecoder().decode(EpisodesResponseEntity.self, from: data)
+            return decodedData
+        } catch {
+            fatalError("Error en el decode de episodios")
+        }
     }
 }

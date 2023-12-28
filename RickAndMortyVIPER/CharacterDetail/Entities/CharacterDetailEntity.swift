@@ -19,7 +19,7 @@ struct CharacterDetailEntity: Decodable {
     var episode: [String]
     var image: String
     var urlCharacter: String
-    
+
     enum CodingKeys: String, CodingKey {
         case urlCharacter = "url"
         case id, name, status, species, gender, origin, location, episode, image
@@ -29,9 +29,8 @@ struct CharacterDetailEntity: Decodable {
 struct LocationCharacter: Decodable {
     var name: String
     var url: String
-    
+
     enum CodingKeys: String, CodingKey {
         case name, url
     }
 }
-

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol EpisodesListPresentable: AnyObject {
-    var ui: EpisodesListUI? { get }
+    var episodeListUI: EpisodesListUI? { get }
     var episodesModels: [EpisodeCellViewModel] { get }
     func onViewAppear()
     func loadMoreData()

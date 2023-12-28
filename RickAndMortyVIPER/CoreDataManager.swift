@@ -10,11 +10,9 @@ import CoreData
 
 class CoreDataManager {
     static let shared = CoreDataManager()
-    
+
     private init() {}
-    
-    // MARK: - Core Data stack
-    
+
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "CharacterDataModel")
         container.loadPersistentStores(completionHandler: { (_, error) in
@@ -24,9 +22,7 @@ class CoreDataManager {
         })
         return container
     }()
-    
-    // MARK: - Core Data Saving support
-    
+
     func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -38,21 +34,19 @@ class CoreDataManager {
             }
         }
     }
-    
-    // MARK: - Character CRUD operations
-    
+
     func insertCharacter(entity: CharactersEntity) {
         let context = persistentContainer.viewContext
         let character = Character(context: context)
         let characterAttributes = entity.toDictionary()
         character.setValuesForKeys(characterAttributes)
-        
+
         saveContext()
     }
-    
+
     func insertCharacters(entities: [CharactersEntity], page: Int, numPages: Int) {
         let context = persistentContainer.viewContext
-        
+
         for entity in entities {
             let character = Character(context: context)
             let characterAttributes = entity.toDictionary()
@@ -60,14 +54,14 @@ class CoreDataManager {
             character.page = Int64(page)
             character.numPages = Int64(numPages)
         }
-        
+
         saveContext()
     }
-    
+
     func getAllCharacters() -> [Character] {
         let context = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Character> = Character.fetchRequest()
-        
+
         do {
             let characters = try context.fetch(fetchRequest)
             return characters
@@ -76,12 +70,12 @@ class CoreDataManager {
             return []
         }
     }
-    
+
     func getAllCharacters(page: Int) -> [Character] {
         let context = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Character> = Character.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "page == %lld", Int64(page))
-        
+
         do {
             let characters = try context.fetch(fetchRequest)
             return characters

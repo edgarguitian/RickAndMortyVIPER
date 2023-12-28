@@ -14,7 +14,7 @@ struct LocationDetailEntity: Decodable {
     var dimension: String
     var urlLocation: String
     var residents: [String]
-    
+
     enum CodingKeys: String, CodingKey {
         case urlLocation = "url"
         case id, name, type, dimension, residents

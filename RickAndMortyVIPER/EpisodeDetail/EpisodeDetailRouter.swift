@@ -25,23 +25,22 @@ class EpisodeDetailRouter: EpisodeDetailRouting {
         guard let episodeDetailView = episodeDetailView else {
             return
         }
-        
+
         episodeDetailView.hidesBottomBarWhenPushed = true
-        presenter.ui = episodeDetailView
+        presenter.episodeDetailUI = episodeDetailView
         if let navigationController = fromViewController.navigationController {
             navigationController.pushViewController(episodeDetailView, animated: true)
         } else {
             fromViewController.present(episodeDetailView, animated: true)
         }
     }
-    
-    
+
     func showDetailCharacters(withCharacterURL characterURL: URL) {
         guard let episodeDetailView = episodeDetailView else {
             return
         }
-        
+
         CharacterDetailRouter().showDetail(fromViewController: episodeDetailView, withCharacterURL: characterURL)
     }
-    
+
 }

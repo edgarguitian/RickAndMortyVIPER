@@ -16,9 +16,8 @@ class LocationDetailPresenter: LocationDetailPresentable {
     private let characterDetailMapper: CharacterDetailMapper
     private let router: LocationDetailRouting
     private var infoResidents: [CharacterDetailViewModel] = []
+    weak var locationDetailUI: LocationDetailPresenterUI?
 
-    weak var ui: LocationDetailPresenterUI?
-    
     init(locationDetailInteractor: LocationDetailInteractable,
          characterDetailInteractor: CharacterDetailInteractable,
          locationURL: URL,
@@ -32,22 +31,23 @@ class LocationDetailPresenter: LocationDetailPresentable {
         self.characterDetailMapper = characterDetailMapper
         self.router = router
     }
-    
+
     func onViewAppear() {
         Task {
             let model = await locationDetailInteractor.getDetailLocation(withURL: locationURL)
             for characterItem in 0..<model.residents.count {
-                let character = await characterDetailInteractor.getDetailCharacter(withURL: URL(string: model.residents[characterItem])!)
+                let url = URL(string: model.residents[characterItem])!
+                let character = await characterDetailInteractor.getDetailCharacter(withURL: url)
                 let characterModel = characterDetailMapper.map(entity: character, episodes: [])
                 infoResidents.append(characterModel)
             }
             locationModel = locationDetailMapper.map(entity: model, residents: infoResidents)
             await MainActor.run {
-                self.ui?.updateUI(viewModel: locationModel!)
+                self.locationDetailUI?.updateUI(viewModel: locationModel!)
             }
         }
     }
-    
+
     func onTapCell(atIndex: Int) {
         let residentURL = infoResidents[atIndex].urlCharacter
         guard let residentURL = residentURL else {

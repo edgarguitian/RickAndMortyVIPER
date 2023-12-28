@@ -11,7 +11,7 @@ import UIKit
 protocol LocationsListRouting: AnyObject {
     var detailRouter: LocationDetailRouting? { get }
     var locationsListView: LocationsListView? { get }
-    
+
     func createLocationsList() -> LocationsListView
     func showDetailLocation(withLocationURL locationURL: URL)
 }

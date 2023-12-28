@@ -10,43 +10,43 @@ import UIKit
 
 class EpisodesListView: UIViewController {
     private let presenter: EpisodesListPresentable
-    
+
     var episodesTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(EpisodeCellView.self, forCellReuseIdentifier: "EpisodeCellView")
         return tableView
     }()
-    
+
     init(presenter: EpisodesListPresentable) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init coder has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupTableView()
         presenter.onViewAppear()
-        
+
         self.navigationItem.title = "Episodes"
 
     }
-    
+
     private func setupTableView() {
         view.addSubview(episodesTableView)
-        
+
         NSLayoutConstraint.activate([
             episodesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             episodesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             episodesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             episodesTableView.topAnchor.constraint(equalTo: view.topAnchor)
         ])
-        
+
         episodesTableView.dataSource = self
         episodesTableView.delegate = self
     }
@@ -65,13 +65,17 @@ extension EpisodesListView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter.episodesModels.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCellView", for: indexPath) as! EpisodeCellView
-        let model = presenter.episodesModels[indexPath.row]
-        
-        cell.configure(model: model)
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCellView",
+                                                    for: indexPath) as? EpisodeCellView {
+            let model = presenter.episodesModels[indexPath.row]
+
+            cell.configure(model: model)
+            return cell
+        } else {
+            fatalError("No se pudo hacer casting a EpisodeCellView")
+        }
     }
 }
 
@@ -79,15 +83,14 @@ extension EpisodesListView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.onTapCell(atIndex: indexPath.row)
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let screenHeight = scrollView.frame.size.height
-        
+
         if offsetY > contentHeight - screenHeight {
             presenter.loadMoreData()
         }
     }
 }
-

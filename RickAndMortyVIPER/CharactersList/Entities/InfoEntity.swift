@@ -12,7 +12,7 @@ struct InfoEntity: Decodable {
     var pages: Int
     var next: String?
     var prev: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case count, pages, next, prev
     }

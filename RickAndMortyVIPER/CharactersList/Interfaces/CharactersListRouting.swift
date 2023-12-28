@@ -11,7 +11,7 @@ import UIKit
 protocol CharactersListRouting: AnyObject {
     var detailRouter: CharacterDetailRouting? { get }
     var charactersListView: CharactersListView? { get }
-    
+
     func createCharactersList() -> CharactersListView
     func showDetailCharacter(withCharacterURL characterURL: URL)
     func showFilterView()

@@ -16,7 +16,7 @@ class CharacterDetailPresenter: CharacterDetailPresentable {
     private let episodeDetailMapper: EpisodeDetailMapper
     var characterModel: CharacterDetailViewModel?
     private var infoEpisodes: [EpisodeDetailViewModel] = []
-    weak var ui: CharacterDetailPresenterUI?
+    weak var characterDetailUI: CharacterDetailPresenterUI?
     private let router: CharacterDetailRouting
 
     init(characterDetailInteractor: CharacterDetailInteractable,
@@ -43,7 +43,7 @@ class CharacterDetailPresenter: CharacterDetailPresentable {
             }
             characterModel = characterDetailMapper.map(entity: model, episodes: infoEpisodes)
             await MainActor.run {
-                self.ui?.updateUI(viewModel: characterModel!)
+                self.characterDetailUI?.updateUI(viewModel: characterModel!)
             }
         }
     }

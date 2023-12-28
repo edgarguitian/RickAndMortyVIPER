@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CharactersListPresentable: AnyObject {
-    var ui: CharactersListUI? { get }
+    var charactersListUI: CharactersListUI? { get }
     var charactersModels: [CharacterCellViewModel] { get }
     var filteredCharacters: [CharacterCellViewModel] { get set }
     func onViewAppear()

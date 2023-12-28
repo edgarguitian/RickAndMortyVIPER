@@ -8,7 +8,7 @@
 import Foundation
 
 class LocationsListPresenter: LocationsListPresentable {
-    weak var ui: LocationsListUI?
+    weak var locationListUI: LocationsListUI?
     private let locationsListInteractor: LocationsListInteractable
     var locationsModels: [LocationCellViewModel] = []
     private var models: [LocationsEntity] = []
@@ -16,7 +16,7 @@ class LocationsListPresenter: LocationsListPresentable {
     private let router: LocationsListRouting
     private var currentPage: Int = 1
     private var numPages: Int = -1
-    
+
     init(locationsListInteractor: LocationsListInteractable,
          locationMapper: LocationMapper,
          router: LocationsListRouting) {
@@ -24,15 +24,14 @@ class LocationsListPresenter: LocationsListPresentable {
         self.locationMapper = locationMapper
         self.router = router
     }
-    
+
     func onViewAppear() {
         if numPages == -1 {
             loadLocations(page: currentPage)
         }
-        
-        
+
     }
-    
+
     func loadLocations(page: Int) {
         if numPages == -1 || page <= numPages {
             Task {
@@ -41,19 +40,19 @@ class LocationsListPresenter: LocationsListPresentable {
                 let newLocations = locationsResult.results
                 let newModels = newLocations.map(locationMapper.map(entity:))
                 locationsModels.append(contentsOf: newModels)
-                ui?.update(locations: locationsModels)
+                locationListUI?.update(locations: locationsModels)
             }
         }
     }
-    
+
     func onTapCell(atIndex: Int) {
-        let locationURL = models[atIndex].urlLocation
-        guard let locationURL = URL(string: locationURL) else {
+        let locationURL = locationsModels[atIndex].locationURL
+        guard let locationURL = locationURL else {
             return
         }
         router.showDetailLocation(withLocationURL: locationURL)
     }
-    
+
     func loadMoreData() {
         currentPage += 1
         loadLocations(page: currentPage)

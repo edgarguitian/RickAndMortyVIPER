@@ -11,7 +11,7 @@ import UIKit
 protocol EpisodesListRouting: AnyObject {
     var detailRouter: EpisodeDetailRouting? { get }
     var episodesListView: EpisodesListView? { get }
-    
+
     func createEpisodesList() -> EpisodesListView
     func showDetailEpisode(withEpisodeURL episodeURL: URL)
 }

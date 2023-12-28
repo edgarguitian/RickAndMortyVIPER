@@ -12,7 +12,7 @@ struct EpisodesEntity: Decodable {
     var name: String
     var episode: String
     var urlEpisode: String
-    
+
     enum CodingKeys: String, CodingKey {
         case urlEpisode = "url"
         case id, name, episode

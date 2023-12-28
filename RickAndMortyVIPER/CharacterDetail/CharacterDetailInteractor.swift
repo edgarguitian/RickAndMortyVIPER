@@ -6,12 +6,35 @@
 //
 
 import Foundation
+import Alamofire
 
 class CharacterDetailInteractor: CharacterDetailInteractable {
     func getDetailCharacter(withURL url: URL) async -> CharacterDetailEntity {
-        let (data, _) = try! await URLSession.shared.data(from: url)
-        return try! JSONDecoder().decode(CharacterDetailEntity.self, from: data)
-
+        do {
+            return try await withCheckedThrowingContinuation { continuation in
+                        AF.request(
+                            url,
+                            parameters: nil,
+                            headers: nil,
+                            requestModifier: nil
+                        )
+                        .responseData { response in
+                            switch(response.result) {
+                            case let .success(data):
+                                do {
+                                    let jsonData = try JSONDecoder().decode(CharacterDetailEntity.self, from: data)
+                                    continuation.resume(returning: jsonData)
+                                } catch {
+                                    fatalError("Error decoding character")
+                                }
+                            case let .failure(error):
+                                fatalError("Error obtiendo character: "+error.localizedDescription)
+                            }
+                        }
+                    }
+        } catch {
+            fatalError("Error obtiendo character")
+        }
     }
 
 }

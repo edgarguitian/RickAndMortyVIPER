@@ -8,7 +8,7 @@
 import Foundation
 
 protocol EpisodeDetailPresentable: AnyObject {
-    var ui: EpisodeDetailPresenterUI? { get }
+    var episodeDetailUI: EpisodeDetailPresenterUI? { get }
     var episodeURL: URL { get }
     var episodeModel: EpisodeDetailViewModel? { get }
     func onViewAppear()
