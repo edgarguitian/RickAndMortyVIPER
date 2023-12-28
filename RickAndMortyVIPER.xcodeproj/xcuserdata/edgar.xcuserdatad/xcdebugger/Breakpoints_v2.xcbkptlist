@@ -46,8 +46,8 @@
             filePath = "RickAndMortyVIPER/CharactersList/CharactersListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "updateFilteredCharacters(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "RickAndMortyVIPER/CharactersList/CharactersListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "filterCharacters()"
             landmarkType = "7">
          </BreakpointContent>
@@ -110,8 +110,8 @@
             filePath = "RickAndMortyVIPER/CharactersList/CharactersListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "resetFilters()"
             landmarkType = "7">
          </BreakpointContent>
@@ -130,6 +130,69 @@
             endingLineNumber = "31"
             landmarkName = "showDetail(fromViewController:withCharacterURL:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "75726A61-B5E5-4AE8-BB7D-AFEE951B2606"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMortyVIPER/CharactersList/CharactersListPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "loadCharacters(page:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "75726A61-B5E5-4AE8-BB7D-AFEE951B2606 - 87880e4328607eed"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #3 @Sendable () async -&gt; () in RickAndMortyVIPER.CharactersListPresenter.loadCharacters(page: Swift.Int) -&gt; ()"
+                  moduleName = "RickAndMortyVIPER"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edgar/Documents/RickAndMortyVIPER/RickAndMortyVIPER/CharactersList/CharactersListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "75726A61-B5E5-4AE8-BB7D-AFEE951B2606 - 79f527193949550e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #3 @Sendable () async -&gt; () in RickAndMortyVIPER.CharactersListPresenter.loadCharacters(page: Swift.Int) -&gt; ()"
+                  moduleName = "RickAndMortyVIPER"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edgar/Documents/RickAndMortyVIPER/RickAndMortyVIPER/CharactersList/CharactersListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "75726A61-B5E5-4AE8-BB7D-AFEE951B2606 - 86a56567138932eb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #3 @Sendable () async -&gt; () in RickAndMortyVIPER.CharactersListPresenter.loadCharacters(page: Swift.Int) -&gt; ()"
+                  moduleName = "RickAndMortyVIPER"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edgar/Documents/RickAndMortyVIPER/RickAndMortyVIPER/CharactersList/CharactersListPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

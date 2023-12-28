@@ -39,16 +39,46 @@ class CharactersListPresenter: CharactersListPresentable {
     
     private func loadCharacters(page: Int) {
         if numPages == -1 || page <= numPages {
+            var allCharacters = CoreDataManager.shared.getAllCharacters(page: page)
+            if allCharacters.count > 0 {
+                allCharacters = allCharacters.sorted(by: { $0.id < $1.id })
+
+                var newCharacters = allCharacters.map {
+                    CharactersEntity(id: Int($0.id), name: $0.name!, status: $0.status!, species: $0.species!, gender: $0.gender!, urlCharacter: $0.urlCharacter!, image: $0.image!)
+                }
+                let newModels = newCharacters.map(characterMapper.map(entity:))
+                numPages = Int(allCharacters[allCharacters.count - 1].numPages)
+                charactersModels.append(contentsOf: newModels)
+                filteredCharacters = charactersModels
+                ui?.update(characters: charactersModels)
+            } else {
+                Task {
+                    let charactersResult = await charactersListInteractor.getCharactersList(page: page)
+                    numPages = charactersResult.info.pages
+                    let newCharacters = charactersResult.results
+                    CoreDataManager.shared.insertCharacters(entities: newCharacters, page: page, numPages: numPages)
+
+                    let newModels = newCharacters.map(characterMapper.map(entity:))
+                    charactersModels.append(contentsOf: newModels)
+                    filteredCharacters = charactersModels
+                    ui?.update(characters: charactersModels)
+                }
+            }
+        }
+        
+        /*if numPages == -1 || page <= numPages {
             Task {
                 let charactersResult = await charactersListInteractor.getCharactersList(page: page)
                 numPages = charactersResult.info.pages
                 let newCharacters = charactersResult.results
+                CoreDataManager.shared.insertCharacters(entities: newCharacters)
+
                 let newModels = newCharacters.map(characterMapper.map(entity:))
                 charactersModels.append(contentsOf: newModels)
                 filteredCharacters = charactersModels
                 ui?.update(characters: charactersModels)
             }
-        }
+        }*/
     }
     
     func onTapCell(atIndex: Int) {

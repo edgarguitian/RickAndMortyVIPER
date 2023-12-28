@@ -20,4 +20,17 @@ struct CharactersEntity: Decodable {
         case urlCharacter = "url"
         case id, name, status, species, gender, image
     }
+    
+    func toDictionary() -> [String: Any] {
+        let mirror = Mirror(reflecting: self)
+        var dictionary = [String: Any]()
+        
+        for child in mirror.children {
+            if let key = child.label {
+                dictionary[key] = child.value
+            }
+        }
+        
+        return dictionary
+    }
 }
