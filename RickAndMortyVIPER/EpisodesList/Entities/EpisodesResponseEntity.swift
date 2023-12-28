@@ -8,5 +8,6 @@
 import Foundation
 
 struct EpisodesResponseEntity: Decodable {
+    let info: InfoEntity
     let results: [EpisodesEntity]
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol LocationsListInteractable: AnyObject {
-    func getLocationsList() async -> LocationsResponseEntity
+    func getLocationsList(page: Int) async -> LocationsResponseEntity
 }

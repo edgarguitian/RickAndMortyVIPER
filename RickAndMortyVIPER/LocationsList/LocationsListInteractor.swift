@@ -8,8 +8,8 @@
 import Foundation
 
 class LocationsListInteractor: LocationsListInteractable {
-    func getLocationsList() async -> LocationsResponseEntity {
-        let url = URL(string: "https://rickandmortyapi.com/api/location")!
+    func getLocationsList(page: Int) async -> LocationsResponseEntity {
+        let url = URL(string: "https://rickandmortyapi.com/api/location/?page=" + String(page))!
         let (data, _) = try! await URLSession.shared.data(from: url)
         return try! JSONDecoder().decode(LocationsResponseEntity.self, from: data)
     }

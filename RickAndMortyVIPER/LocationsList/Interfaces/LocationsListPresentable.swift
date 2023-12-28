@@ -11,5 +11,6 @@ protocol LocationsListPresentable: AnyObject {
     var ui: LocationsListUI? { get }
     var locationsModels: [LocationCellViewModel] { get }
     func onViewAppear()
+    func loadMoreData()
     func onTapCell(atIndex: Int)
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol EpisodesListInteractable: AnyObject {
-    func getEpisodesList() async -> EpisodesResponseEntity
+    func getEpisodesList(page: Int) async -> EpisodesResponseEntity
 }

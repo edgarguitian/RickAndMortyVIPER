@@ -11,5 +11,6 @@ protocol EpisodesListPresentable: AnyObject {
     var ui: EpisodesListUI? { get }
     var episodesModels: [EpisodeCellViewModel] { get }
     func onViewAppear()
+    func loadMoreData()
     func onTapCell(atIndex: Int)
 }
